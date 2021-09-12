@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { IUserModel, User } from './user';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,40 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'test';
+
+  user:User;
+  constructor(){
+    let userModel:IUserModel = {
+      name:'',
+      password:'',
+      confirmPassword:'',
+      address:{
+        city:'',
+        state:''
+      }
+    }
+    this.user = new User(userModel);
+  }
+
+  @ViewChild('regForm') regForm!:NgForm;
+
+
+  ngOnInit(){
+
+  }
+
+  onGetData(){
+    let userModel:IUserModel = {
+      name:'Tiru',
+      password:'abc',
+      confirmPassword:'abc',
+      address:{
+        city:'Hyd',
+        state:'Tel'
+      }
+    }
+    this.user = new User(userModel);
+  }
+
+
 }
