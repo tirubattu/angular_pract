@@ -1,42 +1,73 @@
-<form #regForm="ngForm">
-  {{regForm.value | json }}
-  <div>
-  valid: {{regForm.valid | json }}
-</div>
+<form [formGroup]="regForm">
+  {{ regForm.value | json }}
+  <div>valid: {{ regForm.valid | json }}</div>
   <div class="form-group">
     <div>
       <label>Name</label>
-      <input class="form-control" name="name" type="text" #name="ngModel" [(ngModel)]="user.name" required pattern="^\d{2}$" [class.is-invalid]="name.touched && name.invalid"/>
-      <div *ngIf="name.touched && name.invalid">
-      <small *ngIf="name.errors && name.errors.required">
-        Name is required
-      </small>
-      <small *ngIf="name.errors && name.errors.pattern">
-        Min Length is 2
-      </small>
-    </div>
+      <input
+        autocomplete="username"
+        formControlName="name"
+        class="form-control"
+        name="name"
+        type="text"
+        [class.is-invalid]="name && name.touched && name.invalid"
+      />
+      <div *ngIf="name && name.touched && name.invalid">
+        <small *ngIf="name.errors && name.errors.required">
+          Name is required
+        </small>
+        <small *ngIf="name.errors && name.errors.pattern">
+          Incorrect user name
+        </small>
+      </div>
     </div>
     <div>
       <label>Password</label>
-      <input class="form-control" name="password" type="password" #pass="ngModel" [(ngModel)]="user.password" required/>
+      <input
+        autocomplete="new-password"
+        formControlName="password"
+        class="form-control"
+        name="password"
+        type="password"
+      />
     </div>
     <div>
       <label>Confirm Password</label>
-      <input class="form-control" name="confirmPassword" type="password" #cnfPass="ngModel" [(ngModel)]="user.confirmPassword" required/>
+      <input
+        autocomplete="new-password"
+        formControlName="confirmPassword"
+        class="form-control"
+        name="confirmPassword"
+        type="password"
+      />
     </div>
-    <div class="form-group" ngModelGroup="address">
+    <div class="form-group" formGroupName="address">
       <div>
         <label>City</label>
-        <input class="form-control" name="city" type="text" #city="ngModel" [(ngModel)]="user.address.city"/>
+        <input
+          autocomplete="address-level2"
+          formControlName="city"
+          class="form-control"
+          name="city"
+          type="text"
+        />
       </div>
       <div>
         <label>State</label>
-        <input class="form-control" name="state" type="text" #state="ngModel" [(ngModel)]="user.address.state"   />
+        <input
+          autocomplete="address-level1"
+          formControlName="state"
+          class="form-control"
+          name="state"
+          type="text"
+        />
       </div>
     </div>
   </div>
 </form>
 
-<button type="button" (click)="onGetData()" class="btn btn-primary">Get Data</button>
+<button type="button" (click)="setFormData()" class="btn btn-primary">
+  Set Form Data
+</button>
 
 <router-outlet></router-outlet>

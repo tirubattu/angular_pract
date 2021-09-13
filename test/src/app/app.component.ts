@@ -1,6 +1,6 @@
 import { IUserModel, User } from './user';
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component} from '@angular/core';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,8 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
 
   user:User;
-  constructor(){
+  regForm:FormGroup;
+  constructor(private fb:FormBuilder){
     let userModel:IUserModel = {
       name:'',
       password:'',
@@ -21,26 +22,53 @@ export class AppComponent {
       }
     }
     this.user = new User(userModel);
+    this.regForm = this.fb.group({
+      name:['',[Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      password:[''],
+      confirmPassword:[''],
+      address:fb.group({
+        city:[''],
+        state:['']
+      })
+    });
   }
-
-  @ViewChild('regForm') regForm!:NgForm;
-
 
   ngOnInit(){
 
   }
 
-  onGetData(){
+  setFormData(){
     let userModel:IUserModel = {
       name:'Tiru',
-      password:'abc',
-      confirmPassword:'abc',
+      password:'aaa',
+      confirmPassword:'aaa',
       address:{
         city:'Hyd',
         state:'Tel'
       }
     }
     this.user = new User(userModel);
+    this.regForm.setValue(userModel)
+  }
+
+  get name(){
+    return this.regForm.get('name');
+  }
+
+  get password(){
+    return this.regForm.get('password');
+  }
+
+  get confirmPassword(){
+    return this.regForm.get('confirmPassword');
+  }
+
+  get city(){
+    return this.regForm.get('city');
+  }
+
+  get state(){
+    return this.regForm.get('state');
   }
 
 
