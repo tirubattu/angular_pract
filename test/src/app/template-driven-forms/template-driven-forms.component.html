@@ -1,0 +1,74 @@
+  <form #regForm="ngForm">
+    {{ regForm.value | json }}
+    <div>valid: {{ regForm.valid | json }}</div>
+    <div class="form-group">
+      <div>
+        <label>Name</label>
+        <input
+          class="form-control"
+          name="name"
+          type="text"
+          #name="ngModel"
+          [(ngModel)]="user.name"
+          required
+          pattern="^\d{2}$"
+          [class.is-invalid]="name.touched && name.invalid"
+        />
+        <div *ngIf="name.touched && name.invalid">
+          <small *ngIf="name.errors && name.errors.required">
+            Name is required
+          </small>
+          <small *ngIf="name.errors && name.errors.pattern">
+            Min Length is 2
+          </small>
+        </div>
+      </div>
+      <div>
+        <label>Password</label>
+        <input
+          class="form-control"
+          name="password"
+          type="password"
+          #pass="ngModel"
+          [(ngModel)]="user.password"
+          required
+        />
+      </div>
+      <div>
+        <label>Confirm Password</label>
+        <input
+          class="form-control"
+          name="confirmPassword"
+          type="password"
+          #cnfPass="ngModel"
+          [(ngModel)]="user.confirmPassword"
+          required
+        />
+      </div>
+      <div class="form-group" ngModelGroup="address">
+        <div>
+          <label>City</label>
+          <input
+            class="form-control"
+            name="city"
+            type="text"
+            #city="ngModel"
+            [(ngModel)]="user.address.city"
+          />
+        </div>
+        <div>
+          <label>State</label>
+          <input
+            class="form-control"
+            name="state"
+            type="text"
+            #state="ngModel"
+            [(ngModel)]="user.address.state"
+          />
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="onGetData()" class="btn btn-primary">
+      Get Data
+    </button>
+  </form>

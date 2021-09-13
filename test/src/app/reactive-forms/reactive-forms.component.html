@@ -1,0 +1,71 @@
+<form [formGroup]="regForm">
+  {{ regForm.value | json }}
+  <div>valid: {{ regForm.valid | json }}</div>
+  <div class="form-group">
+    <div>
+      <label>Name</label>
+      <input
+        autocomplete="username"
+        formControlName="name"
+        class="form-control"
+        name="name"
+        type="text"
+        [class.is-invalid]="name && name.touched && name.invalid"
+      />
+      <div *ngIf="name && name.touched && name.invalid">
+        <small *ngIf="name.errors && name.errors.required">
+          Name is required
+        </small>
+        <small *ngIf="name.errors && name.errors.pattern">
+          Incorrect user name
+        </small>
+      </div>
+    </div>
+    <div>
+      <label>Password</label>
+      <input
+        autocomplete="new-password"
+        formControlName="password"
+        class="form-control"
+        name="password"
+        type="password"
+      />
+    </div>
+    <div>
+      <label>Confirm Password</label>
+      <input
+        autocomplete="new-password"
+        formControlName="confirmPassword"
+        class="form-control"
+        name="confirmPassword"
+        type="password"
+      />
+    </div>
+    <div class="form-group" formGroupName="address">
+      <div>
+        <label>City</label>
+        <input
+          autocomplete="address-level2"
+          formControlName="city"
+          class="form-control"
+          name="city"
+          type="text"
+        />
+      </div>
+      <div>
+        <label>State</label>
+        <input
+          autocomplete="address-level1"
+          formControlName="state"
+          class="form-control"
+          name="state"
+          type="text"
+        />
+      </div>
+    </div>
+  </div>
+</form>
+
+<button type="button" (click)="setFormData()" class="btn btn-primary">
+  Set Form Data
+</button>
