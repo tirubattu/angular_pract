@@ -2,9 +2,11 @@ import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.componen
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TemplateDrivenFormsComponent } from './template-driven-forms/template-driven-forms.component';
+import { ReactiveFormsCustomValidatorComponent } from './reactive-forms-custom-validator/reactive-forms-custom-validator';
 
 const routes: Routes = [
   { path: 'formsTemplate', component: TemplateDrivenFormsComponent },
+  { path: 'formsReactiveCustomValidator', component: ReactiveFormsCustomValidatorComponent },
   { path: 'formsReactive', component: ReactiveFormsComponent },
 ];
 

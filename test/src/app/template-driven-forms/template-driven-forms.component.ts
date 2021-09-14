@@ -5,8 +5,7 @@ import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-template-driven-forms',
-  templateUrl: './template-driven-forms.component.html',
-  styleUrls: ['./template-driven-forms.component.scss'],
+  templateUrl: './template-driven-forms.component.html'
 })
 export class TemplateDrivenFormsComponent{
   user: User;

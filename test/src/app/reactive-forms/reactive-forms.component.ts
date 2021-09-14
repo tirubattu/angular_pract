@@ -4,8 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-forms',
-  templateUrl: './reactive-forms.component.html',
-  styleUrls: ['./reactive-forms.component.scss'],
+  templateUrl: './reactive-forms.component.html'
 })
 export class ReactiveFormsComponent {
   user: User;

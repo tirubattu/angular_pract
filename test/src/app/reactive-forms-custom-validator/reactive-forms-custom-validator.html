@@ -1,0 +1,34 @@
+<form [formGroup]="regForm">
+  {{ regForm.value | json }}
+  <div>valid: {{ regForm.valid | json }}</div>
+  <div class="form-group">
+    <div>
+      <label>Name</label>
+      <input
+        autocomplete="username"
+        formControlName="name"
+        class="form-control"
+        name="name"
+        type="text"
+        [class.is-invalid]="name && name.touched && name.invalid"
+      />
+    </div>
+    <div>
+      <label>Password</label>
+      <input
+        autocomplete="new-password"
+        formControlName="password"
+        class="form-control"
+        name="password"
+        type="password"
+        [class.is-invalid]="password?.touched && password?.invalid"
+      />
+      <div *ngIf="password && password.touched && password.invalid">
+        <small *ngIf="password.errors && password?.errors?.restrictWords">
+          <pre>{{password.errors | json}}</pre>
+          Please dont use {{password.errors.actualValue}}, use any {{password.errors.requiredValue}}
+        </small>
+      </div>
+    </div>
+  </div>
+</form>

@@ -6,13 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TemplateDrivenFormsComponent } from './template-driven-forms/template-driven-forms.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
+import { ReactiveFormsCustomValidatorComponent } from './reactive-forms-custom-validator/reactive-forms-custom-validator';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateDrivenFormsComponent,
-    ReactiveFormsComponent
+    ReactiveFormsComponent,
+    ReactiveFormsCustomValidatorComponent
   ],
   imports: [
     BrowserModule,
