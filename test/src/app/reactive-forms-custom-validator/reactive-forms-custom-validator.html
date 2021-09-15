@@ -25,8 +25,7 @@
       />
       <div *ngIf="password && password.touched && password.invalid">
         <small *ngIf="password.errors && password?.errors?.restrictWords">
-          <pre>{{password.errors | json}}</pre>
-          Please dont use {{password.errors.actualValue}}, use any {{password.errors.requiredValue}}
+          Restricted word {{password.errors.actualValue}}
         </small>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { restrictWordsWithParam } from './custom-validator-pass-param';
 import { restrictWordsValidator } from './custom-validators';
 
 @Component({
@@ -13,7 +14,7 @@ export class ReactiveFormsCustomValidatorComponent {
   constructor(private fb: FormBuilder) {
     this.regForm = this.fb.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      password: ['',[restrictWordsValidator]]
+      password: ['',[restrictWordsWithParam('Admin')]]
     });
   }
 
