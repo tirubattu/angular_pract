@@ -1,0 +1,69 @@
+<form [formGroup]="empForm" novalidate>
+  <pre>{{ empForm.value | json }}</pre>
+  <div formArrayName="employees">
+    <div *ngFor="let emp of employees().controls; let empInd = index">
+      <div [formGroupName]="empInd">
+        <div>
+          <label>Emp Name</label>
+          <input formControlName="name" type="text" />
+        </div>
+        <div>
+          <label>Emp Age</label>
+          <input formControlName="age" type="text" />
+        </div>
+        <div formArrayName="skills">
+          <div
+            *ngFor="
+              let skill of employeeSkills(empInd).controls;
+              let skillInd = index
+            "
+          >
+            <div [formGroupName]="skillInd">
+              <label>Emp Skill</label>
+              <input formControlName="name" type="text" />
+              <input formControlName="exp" type="text" />
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="onRemoveSkill(empInd, skillInd)"
+            >
+              Remove Skill
+            </button>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onAddSkill(empInd)"
+        >
+          Add Skill
+        </button>
+        <div formGroupName="address">
+          <div>
+            <label>City</label>
+            <input formControlName="city" type="text" />
+          </div>
+          <div>
+            <label>State</label>
+            <input formControlName="state" type="text" />
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="onRemoveEmployee(empInd)"
+      >
+        Remove Employee
+      </button>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="onAddEmployee()">
+    Add Employee
+  </button>
+</form>
+
+<button type="button" class="btn btn-primary" (click)="setFormData()">
+  Set Form Data
+</button>

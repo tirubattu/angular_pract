@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { TemplateDrivenFormsComponent } from './template-driven-forms/template-driven-forms.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { ReactiveFormsCustomValidatorComponent } from './reactive-forms-custom-validator/reactive-forms-custom-validator';
+import { DynamicFormArrayComponent } from './dynamic-form-array/dynamic-form-array.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ReactiveFormsCustomValidatorComponent } from './reactive-forms-custom-v
     AppComponent,
     TemplateDrivenFormsComponent,
     ReactiveFormsComponent,
-    ReactiveFormsCustomValidatorComponent
+    ReactiveFormsCustomValidatorComponent,
+    DynamicFormArrayComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,22 @@ export class ReactiveFormsCustomValidatorComponent {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.regForm.get("name")?.valueChanges.subscribe(x=>{
+      console.log('name value changed >> ',x);
+    })
+    this.regForm.get("password")?.valueChanges.subscribe(x=>{
+      console.log('passord value changed >> ',x);
+    })
+    this.regForm.valueChanges.subscribe(x=>{
+      console.log('form value changed >> ',x);
+    })
+  }
+
+  onUpdateName(){
+    this.regForm.get("name")?.setValue('Tiru',{ onlySelf: true, emitEvent:false });
+  }
+
 
   get name() {
     return this.regForm.get('name');
