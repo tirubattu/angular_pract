@@ -22,6 +22,28 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
  * Step10 : "setFormData" 1. Build the form dynamically based on form data structure.
  *          2.Use setValue or pathchValue to update form with initial data
  */
+
+/**
+ * Step 1: Create a form group and attach that to html form element
+ *         [formGroup] = "empForm"
+ *
+ * Step 2: Create form array control for empFormGroup.
+ *         Define "formArrayName" in employee container div
+ *         employees: this.fb.array([]) // TS
+ *         formArrayName="employees" // Template
+ * Step 3: Create a getter method which returns employees array
+ *         loop through this employee controls array
+ *         return this.empForm.get('employees') as FormArray;
+ *         <div *ngFor="let emp of employees.controls; let empInd = index">
+ * Step 4: Each employee is formGroup object. Create employee formGroup Object
+ *         bind employee formGroupName in html
+ *         newEmployee()
+ *         <div class="emp-form-group employee" [formGroupName]="empInd">
+ * Step 5: When clicking on add employee push new employee group object to employees array
+ * Step 6: When clicking on remove employee remove employee index frm employee array
+ *
+ *
+ */
 export class DynamicFormArrayComponent implements OnInit {
   empForm: FormGroup;
 
@@ -40,7 +62,7 @@ export class DynamicFormArrayComponent implements OnInit {
    * For FormGroup create form control of any type like FormControl, FormGroup, FormArray
    * @returns employees as FormArray
    */
-  employees(): FormArray {
+  get employees(): FormArray {
     return this.empForm.get('employees') as FormArray;
   }
 
@@ -67,7 +89,7 @@ export class DynamicFormArrayComponent implements OnInit {
    * push "newEmployee" to "employees" FormArray
    */
   onAddEmployee() {
-    this.employees().push(this.newEmployee());
+    this.employees.push(this.newEmployee());
   }
 
   /**
@@ -76,7 +98,7 @@ export class DynamicFormArrayComponent implements OnInit {
    * @param ind index of employees formArray
    */
   onRemoveEmployee(ind: number) {
-    this.employees().removeAt(ind);
+    this.employees.removeAt(ind);
   }
 
   /**
@@ -86,7 +108,7 @@ export class DynamicFormArrayComponent implements OnInit {
    * @returns employee skills at given array
    */
   employeeSkills(ind: number): FormArray {
-    return this.employees().at(ind).get('skills') as FormArray;
+    return this.employees.at(ind).get('skills') as FormArray;
   }
 
   /**
@@ -181,7 +203,7 @@ export class DynamicFormArrayComponent implements OnInit {
 
     employees.forEach((emp, empInd) => {
       let newEmp = this.newEmployee();
-      this.employees().push(newEmp);
+      this.employees.push(newEmp);
       emp.skills.forEach((skill) => {
         let newSkill = this.newSkill();
         this.employeeSkills(empInd).push(this.newSkill());

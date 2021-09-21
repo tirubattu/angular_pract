@@ -1,0 +1,36 @@
+.employees{
+  width: 500px;
+}
+.employee{
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.skill-container{
+  display: flex;
+}
+
+.skills{
+  border: 1px solid #ccc;
+  margin: 5px;
+  display: flex;
+}
+
+.skill{
+  margin: 5px;
+}
+
+.control{
+  margin-bottom: 5px ;
+}
+
+.emp-form-group{
+  padding: 5px;
+  margin: 5px;
+}
+
+.emp-form-control{
+  padding: 5px;
+  margin: 5px;
+}

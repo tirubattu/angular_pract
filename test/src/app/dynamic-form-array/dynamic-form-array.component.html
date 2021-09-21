@@ -1,69 +1,57 @@
 <form [formGroup]="empForm" novalidate>
-  <pre>{{ empForm.value | json }}</pre>
-  <div formArrayName="employees">
-    <div *ngFor="let emp of employees().controls; let empInd = index">
-      <div [formGroupName]="empInd">
-        <div>
+  <div style="display: flex;">
+    <button type="button" class="btn btn-primary small" (click)="setFormData()">
+      Set Form Data
+    </button>
+    <button style="margin-left: 15px;" type="button" class="btn btn-primary small" (click)="onAddEmployee()">
+      Add Employee
+    </button>
+  </div>
+  <!-- <pre>{{ empForm.value | json }}</pre> -->
+  <div class="employees" formArrayName="employees">
+    <div *ngFor="let emp of employees.controls; let empInd = index">
+      <div class="emp-form-group employee" [formGroupName]="empInd">
+        <div class="control">
+          <div>Emp Name</div>
           <label>Emp Name</label>
-          <input formControlName="name" type="text" />
+          <input class="emp-form-control" formControlName="name" type="text" />
         </div>
         <div>
           <label>Emp Age</label>
-          <input formControlName="age" type="text" />
+          <input class="emp-form-control" formControlName="age" type="text" />
         </div>
         <div formArrayName="skills">
-          <div
-            *ngFor="
+          <div style="
+              margin-top: 10px;
+              display: flex;
+              justify-content: space-between;
+            ">
+            <label>Skills</label>
+            <a (click)="onAddSkill(empInd)">Add Skill</a>
+          </div>
+          <div *ngFor="
               let skill of employeeSkills(empInd).controls;
               let skillInd = index
-            "
-          >
-            <div [formGroupName]="skillInd">
-              <label>Emp Skill</label>
-              <input formControlName="name" type="text" />
-              <input formControlName="exp" type="text" />
+            " class="skill-container">
+            <div class="emp-form-group" [formGroupName]="skillInd" class="skills">
+              <input class="emp-form-control skill" formControlName="name" type="text" />
+              <input class="emp-form-control skill" formControlName="exp" type="text" />
             </div>
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="onRemoveSkill(empInd, skillInd)"
-            >
-              Remove Skill
-            </button>
+            <i class="bi bi-dash-circle" (click)="onRemoveSkill(empInd, skillInd)"></i>
           </div>
         </div>
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="onAddSkill(empInd)"
-        >
-          Add Skill
-        </button>
-        <div formGroupName="address">
+        <div class="emp-form-group" formGroupName="address">
           <div>
             <label>City</label>
-            <input formControlName="city" type="text" />
+            <input class="emp-form-control" formControlName="city" type="text" />
           </div>
           <div>
             <label>State</label>
-            <input formControlName="state" type="text" />
+            <input class="emp-form-control" formControlName="state" type="text" />
           </div>
         </div>
       </div>
-      <button
-        type="button"
-        class="btn btn-primary"
-        (click)="onRemoveEmployee(empInd)"
-      >
-        Remove Employee
-      </button>
+      <i class="bi bi-dash-circle" (click)="onRemoveEmployee(empInd)"></i>
     </div>
   </div>
-  <button type="button" class="btn btn-primary" (click)="onAddEmployee()">
-    Add Employee
-  </button>
 </form>
-
-<button type="button" class="btn btn-primary" (click)="setFormData()">
-  Set Form Data
-</button>
