@@ -1,7 +1,7 @@
-export class Employee {
+export class Employee implements IEmployeeInterface {
   name: string;
-  age: number;
-  skills: string[];
+  age: string;
+  skills: ISkills[];
   address: IAddress;
   constructor(options:IEmployeeInterface) {
     this.name = options.name;
@@ -16,9 +16,14 @@ export interface IAddress {
   state: string;
 }
 
+export interface ISkills {
+  name: string;
+  exp: string;
+}
+
 export interface IEmployeeInterface{
   name: string;
-  age: number;
-  skills: string[];
+  age: string;
+  skills: ISkills[];
   address: IAddress;
 }

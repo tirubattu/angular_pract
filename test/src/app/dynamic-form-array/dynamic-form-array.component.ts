@@ -148,7 +148,7 @@ export class DynamicFormArrayComponent implements OnInit {
    * Step2: Use setValue or pathchValue to update form with initial data
    */
   setFormData() {
-    let employees = [
+    let employees:Employee[] = [
       {
         name: 'Tiru',
         age: '44',
@@ -200,6 +200,12 @@ export class DynamicFormArrayComponent implements OnInit {
         },
       },
     ];
+
+    employees.map((emp:Employee)=>{
+      return new Employee(emp)
+    })
+
+    console.log('employee new object ==> ',employees);
 
     employees.forEach((emp, empInd) => {
       let newEmp = this.newEmployee();
